@@ -52,12 +52,12 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlSer
 
 builder.Services.AddHttpClient<CustomerClient>(client =>
 {
-    client.BaseAddress = new Uri(builder.Configuration["ScoreCardAddress"] ?? "https://localhost:7230");
+    client.BaseAddress = new Uri(builder.Configuration["ScoreCardAddress"] ?? "https://eligibilityscoreservice-csaucxgkabbvd5d4.canadacentral-01.azurewebsites.net");
 });
 
 builder.Services.AddHttpClient<OfficerClient>(client =>
 {
-    client.BaseAddress = new Uri("https://localhost:7002");
+    client.BaseAddress = new Uri("https://authservicee-gkefb8d7anfwfwfd.canadacentral-01.azurewebsites.net");
     client.DefaultRequestVersion = HttpVersion.Version11; 
     client.DefaultVersionPolicy = HttpVersionPolicy.RequestVersionOrLower;
     client.Timeout = TimeSpan.FromSeconds(30);
