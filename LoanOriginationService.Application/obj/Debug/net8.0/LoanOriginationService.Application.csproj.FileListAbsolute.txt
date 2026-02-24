@@ -1,0 +1,17 @@
+C:\Users\Sakib\source\repos\LoanOriginationService.API\LoanOriginationService.Application\obj\Debug\net8.0\LoanOriginationService.Application.csproj.AssemblyReference.cache
+C:\Users\Sakib\source\repos\LoanOriginationService.API\LoanOriginationService.Application\obj\Debug\net8.0\LoanOriginationService.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Sakib\source\repos\LoanOriginationService.API\LoanOriginationService.Application\obj\Debug\net8.0\LoanOriginationService.Application.AssemblyInfoInputs.cache
+C:\Users\Sakib\source\repos\LoanOriginationService.API\LoanOriginationService.Application\obj\Debug\net8.0\LoanOriginationService.Application.AssemblyInfo.cs
+C:\Users\Sakib\source\repos\LoanOriginationService.API\LoanOriginationService.Application\obj\Debug\net8.0\LoanOriginationService.Application.csproj.CoreCompileInputs.cache
+C:\Users\Sakib\source\repos\LoanOriginationService.API\LoanOriginationService.Application\bin\Debug\net8.0\LoanOriginationService.Application.deps.json
+C:\Users\Sakib\source\repos\LoanOriginationService.API\LoanOriginationService.Application\bin\Debug\net8.0\LoanOriginationService.Application.runtimeconfig.json
+C:\Users\Sakib\source\repos\LoanOriginationService.API\LoanOriginationService.Application\bin\Debug\net8.0\LoanOriginationService.Application.dll
+C:\Users\Sakib\source\repos\LoanOriginationService.API\LoanOriginationService.Application\bin\Debug\net8.0\LoanOriginationService.Application.pdb
+C:\Users\Sakib\source\repos\LoanOriginationService.API\LoanOriginationService.Application\bin\Debug\net8.0\LoanOriginationService.Domain.dll
+C:\Users\Sakib\source\repos\LoanOriginationService.API\LoanOriginationService.Application\bin\Debug\net8.0\LoanOriginationService.Domain.pdb
+C:\Users\Sakib\source\repos\LoanOriginationService.API\LoanOriginationService.Application\obj\Debug\net8.0\LoanOrig.A3462F6B.Up2Date
+C:\Users\Sakib\source\repos\LoanOriginationService.API\LoanOriginationService.Application\obj\Debug\net8.0\LoanOriginationService.Application.dll
+C:\Users\Sakib\source\repos\LoanOriginationService.API\LoanOriginationService.Application\obj\Debug\net8.0\refint\LoanOriginationService.Application.dll
+C:\Users\Sakib\source\repos\LoanOriginationService.API\LoanOriginationService.Application\obj\Debug\net8.0\LoanOriginationService.Application.pdb
+C:\Users\Sakib\source\repos\LoanOriginationService.API\LoanOriginationService.Application\obj\Debug\net8.0\LoanOriginationService.Application.genruntimeconfig.cache
+C:\Users\Sakib\source\repos\LoanOriginationService.API\LoanOriginationService.Application\obj\Debug\net8.0\ref\LoanOriginationService.Application.dll

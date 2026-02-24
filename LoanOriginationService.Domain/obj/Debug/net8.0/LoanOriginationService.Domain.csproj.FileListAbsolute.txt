@@ -1,0 +1,14 @@
+C:\Users\Sakib\source\repos\LoanOriginationService.API\LoanOriginationService.Domain\bin\Debug\net8.0\LoanOriginationService.Domain.deps.json
+C:\Users\Sakib\source\repos\LoanOriginationService.API\LoanOriginationService.Domain\bin\Debug\net8.0\LoanOriginationService.Domain.runtimeconfig.json
+C:\Users\Sakib\source\repos\LoanOriginationService.API\LoanOriginationService.Domain\bin\Debug\net8.0\LoanOriginationService.Domain.dll
+C:\Users\Sakib\source\repos\LoanOriginationService.API\LoanOriginationService.Domain\bin\Debug\net8.0\LoanOriginationService.Domain.pdb
+C:\Users\Sakib\source\repos\LoanOriginationService.API\LoanOriginationService.Domain\obj\Debug\net8.0\LoanOriginationService.Domain.csproj.AssemblyReference.cache
+C:\Users\Sakib\source\repos\LoanOriginationService.API\LoanOriginationService.Domain\obj\Debug\net8.0\LoanOriginationService.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Sakib\source\repos\LoanOriginationService.API\LoanOriginationService.Domain\obj\Debug\net8.0\LoanOriginationService.Domain.AssemblyInfoInputs.cache
+C:\Users\Sakib\source\repos\LoanOriginationService.API\LoanOriginationService.Domain\obj\Debug\net8.0\LoanOriginationService.Domain.AssemblyInfo.cs
+C:\Users\Sakib\source\repos\LoanOriginationService.API\LoanOriginationService.Domain\obj\Debug\net8.0\LoanOriginationService.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Sakib\source\repos\LoanOriginationService.API\LoanOriginationService.Domain\obj\Debug\net8.0\LoanOriginationService.Domain.dll
+C:\Users\Sakib\source\repos\LoanOriginationService.API\LoanOriginationService.Domain\obj\Debug\net8.0\refint\LoanOriginationService.Domain.dll
+C:\Users\Sakib\source\repos\LoanOriginationService.API\LoanOriginationService.Domain\obj\Debug\net8.0\LoanOriginationService.Domain.pdb
+C:\Users\Sakib\source\repos\LoanOriginationService.API\LoanOriginationService.Domain\obj\Debug\net8.0\LoanOriginationService.Domain.genruntimeconfig.cache
+C:\Users\Sakib\source\repos\LoanOriginationService.API\LoanOriginationService.Domain\obj\Debug\net8.0\ref\LoanOriginationService.Domain.dll
