@@ -22,7 +22,7 @@ namespace LoanOriginationService.Application.DTO.Customer
         public async Task<CustomerDto?> GetCustomerDetailsById(int id)
         {
             var response = await client
-                .GetFromJsonAsync<ApiResponse<CustomerDto>>($"/api/scorecard/customer/{id}");
+                .GetFromJsonAsync<ApiResponse<CustomerDto>>($"api/scorecard/customer/{id}");
 
             return response?.Data;
         }

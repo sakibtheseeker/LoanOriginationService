@@ -22,7 +22,7 @@ namespace LoanOriginationService.Application.DTO.Officer
         {
             var response = await client
                 .GetFromJsonAsync<ApiResponse<List<OfficerDto>>>(
-                    "/api/Auth/Officer");
+                    "api/Auth/Officer");
 
             Console.WriteLine("Officer API returned: " + (response?.Data?.Count ?? 0));
 
