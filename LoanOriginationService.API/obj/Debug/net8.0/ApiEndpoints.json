@@ -153,6 +153,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "LoanOriginationService.API.Controllers.ScoreCardController",
+    "Method": "GetScoreCardByCustomer",
+    "RelativePath": "api/ScoreCard/customer/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "LoanOriginationService.API.Controllers.WeatherForecastController",
     "Method": "Get",
     "RelativePath": "WeatherForecast",
