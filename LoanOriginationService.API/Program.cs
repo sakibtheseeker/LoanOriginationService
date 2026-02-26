@@ -100,6 +100,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors("AngularApp");
+
 app.UseAuthorization();
 
 app.MapControllers();
