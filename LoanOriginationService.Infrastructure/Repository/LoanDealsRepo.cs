@@ -275,12 +275,25 @@ namespace LoanOriginationService.Infrastructure.Repository
 
         public async Task<List<LoanDealsDto>> GetAllLoanDeals()
         {
-            var d = await db.LoanDeals
-                .Include(x=>x.LoanType)
-                .ToListAsync();
-            var res = mapper.Map<List<LoanDealsDto>>(d);
-            
-            return res;
+            var deals = await db.LoanDeals
+                                .Include(x => x.LoanType)
+                                .ToListAsync();
+
+            var result = new List<LoanDealsDto>();
+
+            foreach (var d in deals)
+            {
+                var dto = mapper.Map<LoanDealsDto>(d);
+
+                var customer = await client.GetCustomerDetailsById(d.custId);
+
+                if (customer != null)
+                    dto.customerName = customer.AuthUserName;
+
+                result.Add(dto);
+            }
+
+            return result;
         }
 
         public async Task<LoanDealsDto> GetLoanDealsByCustId(int cid)
@@ -292,8 +305,23 @@ namespace LoanOriginationService.Infrastructure.Repository
 
         public async Task<LoanDealsDto> GetLoanDealsById(int id)
         {
-            var d = await db.LoanDeals.FindAsync(id);
+            var d = await db.LoanDeals
+                            .Include(x => x.LoanType)
+                            .FirstOrDefaultAsync(x => x.dealId == id);
+
+            if (d == null)
+                return null;
+
             var res = mapper.Map<LoanDealsDto>(d);
+
+            // 🔥 Enrich with Customer Data
+            var customer = await client.GetCustomerDetailsById(d.custId);
+
+            if (customer != null)
+            {
+                res.customerName = customer.AuthUserName;   // adjust case if needed
+            }
+
             return res;
         }
 

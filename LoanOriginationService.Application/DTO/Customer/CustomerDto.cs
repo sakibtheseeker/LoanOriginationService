@@ -9,6 +9,7 @@ namespace LoanOriginationService.Application.DTO.Customer
     public class CustomerDto
     {
         public int customerId { get; set; }
+        public string? AuthUserName { get; set; }
 
         public int ScorecardId { get; set; }
 
