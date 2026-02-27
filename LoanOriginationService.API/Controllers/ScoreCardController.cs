@@ -1,33 +1,47 @@
 ﻿using LoanOriginationService.Application.DTO.Customer;
-using Microsoft.AspNetCore.Http;
+using LoanOriginationService.Application.DTO.External;
+using LoanOriginationService.Application.Helper;
 using Microsoft.AspNetCore.Mvc;
 
-namespace LoanOriginationService.API.Controllers
+[Route("api/[controller]")]
+[ApiController]
+public class ScoreCardController : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ScoreCardController : ControllerBase
+    private readonly CustomerClient _customerClient;
+    private readonly ScorecardClient _scorecardClient;
+
+    public ScoreCardController(
+        CustomerClient customerClient,
+        ScorecardClient scorecardClient)
     {
-        private readonly CustomerClient _client;
-
-        public ScoreCardController(CustomerClient client)
-        {
-            _client = client;
-        }
-
-        [HttpGet("customer/{id}")]
-        public async Task<IActionResult> GetScoreCardByCustomer(int id)
-        {
-            var result = await _client.GetCustomerDetailsById(id);
-
-            if (result == null)
-                return NotFound(new { message = "Scorecard not found" });
-
-            return Ok(new
-            {
-                success = true,
-                data = result
-            });
-        }
+        _customerClient = customerClient;
+        _scorecardClient = scorecardClient;
     }
+
+    // 🔹 Get Name Only
+    [HttpGet("customer/{id}")]
+    public async Task<IActionResult> GetScoreCardByCustomer(int id)
+    {
+        var result = await _customerClient.GetCustomerDetailsById(id);
+
+        if (result == null)
+            return NotFound(new { message = "Customer not found" });
+
+        return Ok(new
+        {
+            success = true,
+            data = result
+        });
     }
+
+    // 🔹 Get Full Scorecard (CIBIL + Eligible)
+    [HttpGet("{customerId}")]
+    public async Task<IActionResult> GetScorecard(int customerId)
+    {
+        var data = await _scorecardClient
+            .GetFullScorecardByCustomerId(customerId);
+
+        return Ok(ApiResponse<ScoreCardDto>
+            .SuccessResponse(data, "success"));
+    }
+}

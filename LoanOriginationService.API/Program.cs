@@ -50,10 +50,19 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlSer
     ));
 
 
-builder.Services.AddHttpClient<CustomerClient>(client =>
+builder.Services.AddHttpClient<ScorecardClient>(client =>
 {
     client.BaseAddress = new Uri(builder.Configuration["ScoreCardAddress"] ?? "https://eligibilityscoreservice-csaucxgkabbvd5d4.canadacentral-01.azurewebsites.net/");
 });
+
+
+
+builder.Services.AddHttpClient<CustomerClient>(client =>
+{
+    client.BaseAddress = new Uri(builder.Configuration["CustomerServiceAddress"] ?? "https://customerservicee-hdb9g9akdcd9fjam.canadacentral-01.azurewebsites.net/");
+});
+
+
 
 builder.Services.AddHttpClient<OfficerClient>(client =>
 {

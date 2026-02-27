@@ -12,7 +12,7 @@ namespace LoanOriginationService.Application.DTO.LoanDeals
         public int dealId { get; set; }
 
         public int custId { get; set; }
-        public string customerName { get; set; }
+        public string AuthUserName { get; set; }
 
         public int scorecardId { get; set; }
 

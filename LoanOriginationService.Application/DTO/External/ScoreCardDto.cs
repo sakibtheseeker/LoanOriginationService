@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LoanOriginationService.Application.DTO.Customer
+namespace LoanOriginationService.Application.DTO.External
 {
-    public class CustomerDto
+    public class ScoreCardDto
     {
         public int customerId { get; set; }
-        public string? AuthUserName { get; set; }
 
         public int ScorecardId { get; set; }
 

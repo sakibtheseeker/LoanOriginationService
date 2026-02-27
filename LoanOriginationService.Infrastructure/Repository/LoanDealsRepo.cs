@@ -21,52 +21,60 @@ namespace LoanOriginationService.Infrastructure.Repository
     {
         private readonly ApplicationDbContext db;
         private readonly IMapper mapper;
-        private readonly CustomerClient client;
         private readonly OfficerClient officerclient;
         private readonly ILogger<LoanDealsRepo> _logger;
+        private readonly CustomerClient customerClient;
+        private readonly ScorecardClient scorecardClient;
 
-        public LoanDealsRepo(ApplicationDbContext db, IMapper mapper, CustomerClient client, ILogger<LoanDealsRepo> logger, OfficerClient officerclient)
+        public LoanDealsRepo(
+            ApplicationDbContext db,
+            IMapper mapper,
+            CustomerClient customerClient,
+            ScorecardClient scorecardClient,
+            ILogger<LoanDealsRepo> logger,
+            OfficerClient officerclient)
         {
-            this.mapper = mapper;
             this.db = db;
-            this.client = client;
-            this._logger= logger;
+            this.mapper = mapper;
+            this.customerClient = customerClient;
+            this.scorecardClient = scorecardClient;
+            this._logger = logger;
             this.officerclient = officerclient;
         }
         public async Task AddLoanDealsAsync(LoanDealsResponseDto dto)
         {
-
-
             try
             {
-                
                 var loanid = db.LoanTypes.FirstOrDefault(c => c.loanTypeId == dto.loanTypeId);
 
                 if (loanid == null)
-                {
                     throw new ArgumentException("Loan Type Not Found");
-                }
 
                 if (dto.riskRating < 1 || dto.riskRating > 10)
-                {
                     throw new ArgumentException("Risk Rating must be between 1 and 10");
-                }
 
-                // Code for Client dont uncommentt it
-
-                var cust = await client.GetCustomerDetailsById(dto.custId);
-                if (cust == null)
-                {
-                    throw new ArgumentException("Customer ID not Found");
-                }
-                
+                // 🔥 CREATE ENTITY FIRST
                 var d = mapper.Map<LoanDeals>(dto);
 
-                d.cibilScore = cust.cibilScore;
-                d.eligibleAmount = cust.eligibleLoanAmount;
-                d.approvedAmount = cust.eligibleLoanAmount * 92 / 100;
-                d.custId = cust.customerId;
-                d.scorecardId = cust.ScorecardId;
+                var customer = await customerClient.GetCustomerDetailsById(dto.custId);
+                _logger.LogInformation("Customer fetched");
+
+                var scorecard = await scorecardClient
+    .GetFullScorecardByCustomerId(dto.custId);
+                _logger.LogInformation("Scorecard fetched");
+
+                if (customer == null)
+                    throw new ArgumentException("Customer not found");
+
+                if (scorecard == null)
+                    throw new ArgumentException("Scorecard not found");
+
+                // 🔥 combine both services
+                d.custId = customer.customerId;
+                d.scorecardId = scorecard.ScorecardId;
+                d.cibilScore = scorecard.cibilScore;
+                d.eligibleAmount = scorecard.eligibleLoanAmount;
+                d.approvedAmount = scorecard.eligibleLoanAmount * 92 / 100;
 
 
                 db.LoanDeals.Add(d);
@@ -77,36 +85,6 @@ namespace LoanOriginationService.Infrastructure.Repository
                 _logger.LogError(ex, "Caught an error in LoanDeals POST");
                 throw;
             }
-
-
-            //End
-
-
-
-            //var loanid = db.LoanTypes.FirstOrDefault(c => c.loanTypeId == dto.loanTypeId);
-
-            //if (loanid == null)
-            //{
-            //    throw new ArgumentException("Loan Type Not Found");
-            //}
-
-            //var d = mapper.Map<LoanDeals>(dto);
-
-            //if (dto.riskRating < 1 || dto.riskRating > 10)
-            //{
-            //    throw new ArgumentException("Risk Rating must be between 1 and 10");
-            //}
-
-
-            //if (dto.eligibleAmount < dto.approvedAmount)
-            //{
-            //    throw new ArgumentException("Approved Amount Should be greater the Eligible Amount");
-            //}
-
-
-            //db.LoanDeals.Add(d);
-            //db.SaveChanges();
-
         }
 
         public async Task ApproveLoanDeal(int id, LoanDecisionDto e)
@@ -285,10 +263,10 @@ namespace LoanOriginationService.Infrastructure.Repository
             {
                 var dto = mapper.Map<LoanDealsDto>(d);
 
-                var customer = await client.GetCustomerDetailsById(d.custId);
+                var customer = await customerClient.GetCustomerDetailsById(d.custId);
 
                 if (customer != null)
-                    dto.customerName = customer.AuthUserName;
+                    dto.AuthUserName = customer.AuthUserName;
 
                 result.Add(dto);
             }
@@ -314,13 +292,12 @@ namespace LoanOriginationService.Infrastructure.Repository
 
             var res = mapper.Map<LoanDealsDto>(d);
 
-            // 🔥 Enrich with Customer Data
-            var customer = await client.GetCustomerDetailsById(d.custId);
+            // 🔥 Get name from ScoreCard customer endpoint
+            var scorecardCustomer =
+                await scorecardClient.GetScorecardCustomerById(d.custId);
 
-            if (customer != null)
-            {
-                res.customerName = customer.AuthUserName;   // adjust case if needed
-            }
+            if (scorecardCustomer != null)
+                res.AuthUserName = scorecardCustomer.AuthUserName;
 
             return res;
         }
