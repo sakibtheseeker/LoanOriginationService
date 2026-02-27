@@ -292,12 +292,14 @@ namespace LoanOriginationService.Infrastructure.Repository
 
             var res = mapper.Map<LoanDealsDto>(d);
 
-            // 🔥 Get name from ScoreCard customer endpoint
-            var scorecardCustomer =
-                await scorecardClient.GetScorecardCustomerById(d.custId);
+            // 🔥 Add this block
+            var customer = await customerClient
+                .GetCustomerDetailsById(d.custId);
 
-            if (scorecardCustomer != null)
-                res.AuthUserName = scorecardCustomer.AuthUserName;
+            if (customer != null)
+            {
+                res.AuthUserName = customer.AuthUserName;
+            }
 
             return res;
         }
